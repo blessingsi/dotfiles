@@ -63,12 +63,14 @@ return require('packer').startup({
         use {'hrsh7th/vim-vsnip'}
         use {'rafamadriz/friendly-snippets'}
         use {
-            'preservim/tagbar',
+            'liuchengxu/vista.vim',
             config = function()
-                require('common').bind_key('n', '<leader>t', ':TagbarToggle<CR>')
+                vim.g.vista_echo_cursor = 0
+                vim.g.vista_executive_for = {go='nvim_lsp', rust='nvim_lsp'}
+                require('common').bind_key('n', '<leader>t', ':Vista!!<CR>')
+                require('common').bind_key('n', '<leader><leader>t', ':Vista finder<CR>')
             end
         }
-        use {'liuchengxu/vista.vim'}
         use {'tpope/vim-commentary'}
         use {'editorconfig/editorconfig-vim'}
         use {
