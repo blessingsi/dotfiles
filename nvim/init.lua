@@ -15,8 +15,7 @@ if helper.is_linux and helper.is_remote then
     }
 end
 
--- vim.cmd('colorscheme molokai')
-g.colors_name = 'molokai'
+vim.cmd('colorscheme molokai')
 -------- vars end --------------------------------------------------------------
 
 -------- options ---------------------------------------------------------------

@@ -39,18 +39,14 @@ return require('packer').startup({
             requires = {'kyazdani42/nvim-web-devicons'}
         }
         --------------------dev------------------------------------
-        use({
-            {
+        use {
                 'nvim-treesitter/nvim-treesitter',
-                event = 'CursorHold',
+                branch = '0.5-compat',
+                requires =  'nvim-treesitter/nvim-treesitter-textobjects',
                 run = ':TSUpdate',
-                config = function() require('plugins.treesitter') end
-            },
-            {
-                'nvim-treesitter/nvim-treesitter-textobjects',
-                after = 'nvim-treesitter'
-            }
-        })
+                config = function() require('plugins.treesitter') end,
+        }
+        
         use {
             'neovim/nvim-lspconfig',
             config = function() require('plugins.lsp_config') end,
