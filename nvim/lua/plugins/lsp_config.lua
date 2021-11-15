@@ -30,7 +30,7 @@ end
 local lsp = require 'lspconfig'
 
 local defaultServers = {"ccls"}
-for _, s in ipairs(defaultServers) do lsp[s].setup {on_attach = custom_attach} end
+for _, s in ipairs(defaultServers) do lsp[s].setup {on_attach = custom_attach, capabilities = capabilities} end
 
 lsp.pyright.setup {
     on_attach = custom_attach,
@@ -38,7 +38,24 @@ lsp.pyright.setup {
     settings = {python = {analysis = {autoImportCompletions = true}}}
 }
 
-lsp.rls.setup {on_attach = custom_attach, capabilities = capabilities}
+lsp.rust_analyzer.setup({
+    on_attach=custom_attach,
+    capabilities = capabilities,
+    settings = {
+        ["rust-analyzer"] = {
+            assist = {
+                importGranularity = "module",
+                importPrefix = "by_self",
+            },
+            cargo = {
+                loadOutDirsFromCheck = true
+            },
+            procMacro = {
+                enable = true
+            },
+        }
+    }
+})
 
 lsp.jsonls.setup {
     on_attach = function(client)
@@ -50,6 +67,7 @@ lsp.jsonls.setup {
 
 lsp.gopls.setup {
     on_attach = custom_attach,
+    capabilities = capabilities,
     settings = {gopls = {analyses = {unusedparams = true}, staticcheck = true}}
 }
 
