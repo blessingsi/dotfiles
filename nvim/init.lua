@@ -15,7 +15,6 @@ if helper.is_linux and helper.is_remote then
     }
 end
 
-vim.cmd('colorscheme molokai')
 -------- vars end --------------------------------------------------------------
 
 -------- options ---------------------------------------------------------------
@@ -56,6 +55,8 @@ helper.bind_key('n', '<leader>O', 'm`O<Esc>``')
 helper.bind_key('n', '<C-p>',
                 vim.bo[0].buftype == 'quickfix' and "<C-p>" or ':Files<CR>')
 
+helper.bind_key('i', '<C-f>', '<right>')
+helper.bind_key('i', '<C-b>', '<left>')
 -------- key bindings end ------------------------------------------------------
 
 -------- autocmds --------------------------------------------------------------
@@ -64,3 +65,4 @@ helper.add_autocmd_groups(groups)
 -------- autocmds end-----------------------------------------------------------
 
 require('plugin')
+vim.cmd('colorscheme molokai')
