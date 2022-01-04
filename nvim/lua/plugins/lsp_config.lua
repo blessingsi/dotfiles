@@ -23,8 +23,8 @@ local custom_attach = function(client)
     map('n', 'gR', '<cmd>lua vim.lsp.buf.rename()<CR>')
     map('n', 'gI', '<cmd>lua vim.lsp.buf.incoming_calls()<CR>')
     map('n', 'go', '<cmd>lua vim.lsp.buf.outgoing_calls()<CR>')
-    map('n', '<F2>', '<cmd>lua vim.lsp.diagnostic.goto_next()<CR>')
-    map('n', '<F3>', '<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>')
+    map('n', '<F2>', '<cmd>lua vim.diagnostic.goto_next()<CR>')
+    map('n', '<F3>', '<cmd>lua vim.diagnostic.goto_prev()<CR>')
 end
 
 local lsp = require 'lspconfig'
