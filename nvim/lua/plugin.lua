@@ -33,19 +33,26 @@ return require('packer').startup({
 
         use {'fatih/molokai'}
         use {
-            'glepnir/galaxyline.nvim',
-            branch = 'main',
-            config = function() require('plugins.statusline') end,
-            requires = {'kyazdani42/nvim-web-devicons'}
+            'nvim-lualine/lualine.nvim',
+            config = function()
+                require('lualine').setup {
+                    options = {
+                        theme = 'material',
+                        section_separators = {left = ' ', right = ' '}
+                    }
+
+                }
+            end,
+            requires = {'kyazdani42/nvim-web-devicons', opt = true}
         }
         --------------------dev------------------------------------
         use {
-                'nvim-treesitter/nvim-treesitter',
-                requires =  'nvim-treesitter/nvim-treesitter-textobjects',
-                run = ':TSUpdate',
-                config = function() require('plugins.treesitter') end,
+            'nvim-treesitter/nvim-treesitter',
+            requires = 'nvim-treesitter/nvim-treesitter-textobjects',
+            run = ':TSUpdate',
+            config = function() require('plugins.treesitter') end
         }
-        
+
         use {
             'neovim/nvim-lspconfig',
             config = function() require('plugins.lsp_config') end,
@@ -65,9 +72,10 @@ return require('packer').startup({
             'liuchengxu/vista.vim',
             config = function()
                 vim.g.vista_echo_cursor = 0
-                vim.g.vista_executive_for = {go='nvim_lsp', rust='nvim_lsp'}
+                vim.g.vista_executive_for = {go = 'nvim_lsp', rust = 'nvim_lsp'}
                 require('common').bind_key('n', '<leader>t', ':Vista!!<CR>')
-                require('common').bind_key('n', '<leader><leader>t', ':Vista finder<CR>')
+                require('common').bind_key('n', '<leader><leader>t',
+                                           ':Vista finder<CR>')
             end
         }
         use {'tpope/vim-commentary'}
