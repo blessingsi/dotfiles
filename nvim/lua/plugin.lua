@@ -21,17 +21,15 @@ return require('packer').startup({
         use {'tpope/vim-surround'}
         use {'junegunn/fzf', run = function() vim.fn['fzf#install()'](0) end}
         use {'junegunn/fzf.vim'}
+        use {'fatih/molokai'}
         use {
-            'preservim/nerdtree',
-            requires = {
-                {'Xuyuanp/nerdtree-git-plugin'}, {'unkiwii/vim-nerdtree-sync'}
-            },
+            'kyazdani42/nvim-tree.lua',
+            requires = {'kyazdani42/nvim-web-devicons'},
             config = function()
-                require('common').bind_key('n', '<F4>', ':NERDTreeToggle<CR>')
+                require'nvim-tree'.setup {}
+                require('common').bind_key('n', '<F4>', ':NvimTreeToggle<CR>')
             end
         }
-
-        use {'fatih/molokai'}
         use {
             'nvim-lualine/lualine.nvim',
             config = function()
@@ -85,6 +83,8 @@ return require('packer').startup({
             requires = {'nvim-lua/plenary.nvim'},
             config = function() require('gitsigns').setup() end
         }
+
+        use {'mfussenegger/nvim-dap'}
 
         use {
             'ojroques/nvim-lspfuzzy',
