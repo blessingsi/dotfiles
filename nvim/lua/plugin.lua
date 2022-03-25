@@ -81,7 +81,50 @@ return require('packer').startup({
         use {
             'lewis6991/gitsigns.nvim',
             requires = {'nvim-lua/plenary.nvim'},
-            config = function() require('gitsigns').setup() end
+            config = function()
+                require('gitsigns').setup({
+                    on_attach = function(bufnr)
+
+                        -- Navigation
+                        require('common').bind_key('n', ']c',
+                                                   "&diff ? ']c' : '<cmd>Gitsigns next_hunk<CR>'",
+                                                   {expr = true})
+                        require('common').bind_key('n', '[c',
+                                                   "&diff ? '[c' : '<cmd>Gitsigns prev_hunk<CR>'",
+                                                   {expr = true})
+                        require('common').bind_key('n', '<leader>hs',
+                                                   ':Gitsigns stage_hunk<CR>')
+                        require('common').bind_key('v', '<leader>hs',
+                                                   ':Gitsigns stage_hunk<CR>')
+                        require('common').bind_key('n', '<leader>hr',
+                                                   ':Gitsigns reset_hunk<CR>')
+                        require('common').bind_key('v', '<leader>hr',
+                                                   ':Gitsigns reset_hunk<CR>')
+                        require('common').bind_key('n', '<leader>hS',
+                                                   '<cmd>Gitsigns stage_buffer<CR>')
+                        require('common').bind_key('n', '<leader>hu',
+                                                   '<cmd>Gitsigns undo_stage_hunk<CR>')
+                        require('common').bind_key('n', '<leader>hR',
+                                                   '<cmd>Gitsigns reset_buffer<CR>')
+                        require('common').bind_key('n', '<leader>hp',
+                                                   '<cmd>Gitsigns preview_hunk<CR>')
+                        require('common').bind_key('n', '<leader>hb',
+                                                   '<cmd>lua require"gitsigns".blame_line{full=true}<CR>')
+                        require('common').bind_key('n', '<leader>tb',
+                                                   '<cmd>Gitsigns toggle_current_line_blame<CR>')
+                        require('common').bind_key('n', '<leader>hd',
+                                                   '<cmd>Gitsigns diffthis<CR>')
+                        require('common').bind_key('n', '<leader>hD',
+                                                   '<cmd>lua require"gitsigns".diffthis("~")<CR>')
+                        require('common').bind_key('n', '<leader>td',
+                                                   '<cmd>Gitsigns toggle_deleted<CR>')
+                        require('common').bind_key('o', 'ih',
+                                                   ':<C-U>Gitsigns select_hunk<CR>')
+                        require('common').bind_key('x', 'ih',
+                                                   ':<C-U>Gitsigns select_hunk<CR>')
+                    end
+                })
+            end
         }
 
         use {'mfussenegger/nvim-dap'}
