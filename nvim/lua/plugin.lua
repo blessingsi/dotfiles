@@ -127,7 +127,7 @@ return require('packer').startup({
             end
         }
 
-        use {'mfussenegger/nvim-dap'}
+        use {'fatih/vim-go'}
 
         use {
             'ojroques/nvim-lspfuzzy',

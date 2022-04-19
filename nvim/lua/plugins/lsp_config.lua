@@ -63,6 +63,7 @@ lsp.jsonls.setup {
 lsp.gopls.setup {
     on_attach = custom_attach,
     capabilities = capabilities,
+    cmd = {"gopls", "-remote=auto"},
     settings = {gopls = {analyses = {unusedparams = true}, staticcheck = true}}
 }
 
