@@ -60,8 +60,9 @@ helper.bind_key('i', '<C-b>', '<left>')
 -------- key bindings end ------------------------------------------------------
 
 -------- autocmds --------------------------------------------------------------
-groups = {basic = {{"BufWritePost", "$MYVIMRC", "luafile $MYVIMRC"}}}
-helper.add_autocmd_groups(groups)
+cmds = {{"BufWritePost", vim.env.MYVIMRC, {command = "luafile $MYVIMRC"}}}
+helper.add_au_group("basic", cmds)
+
 -------- autocmds end-----------------------------------------------------------
 
 require('plugin')

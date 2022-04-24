@@ -48,6 +48,16 @@ M.add_autocmd_groups = function(defs)
     end
 end
 
+M.add_au_group = function(grp_name, cmds)
+    local grp = vim.api.nvim_create_augroup(grp_name, {clear = true})
+    for _, cmd in ipairs(cmds) do
+        opt = cmd[3]
+        opt.pattern = cmd[2]
+        opt.group = grp
+        vim.api.nvim_create_autocmd(cmd[1], opt)
+    end
+end
+
 M.set_var = function(k, v) vim.api.nvim_set_var(k, v) end
 M.pprint = function(v) print(vim.inspect(v)) end
 
