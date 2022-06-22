@@ -127,7 +127,12 @@ return require('packer').startup({
             end
         }
 
-        use {'fatih/vim-go'}
+        use {'mattn/vim-goimpl'}
+        use {'crispgm/nvim-go',
+            config = function()
+                require('go').setup({auto_lint=false})
+            end
+        }
 
         use {
             'ojroques/nvim-lspfuzzy',
